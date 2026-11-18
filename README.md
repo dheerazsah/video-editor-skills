@@ -1,6 +1,6 @@
 # video-editor-skills
 
-A **video editor and motion designer agent** for [Claude Code](https://claude.com/claude-code), with 49 motion and video skills and a browser film recorder.
+A **video editor and motion designer agent** for [Claude Code](https://claude.com/claude-code), with 62 motion and video skills and a browser film recorder.
 
 The agent plans, builds, re-cuts, records and reviews product and launch films made in code: a web page plays the film, and `scripts/record-film.mjs` records it from Chrome to a steady 30 fps WebM, with JPEG snapshots for checking the cut without watching it.
 
@@ -8,7 +8,7 @@ The agent plans, builds, re-cuts, records and reviews product and launch films m
 | Path | What it is |
 | --- | --- |
 | `agents/video-editor.md` | The agent: role, how films are made, recording and checking method, craft rules, skills index. |
-| `skills/` | 49 skills, copied unchanged from their sources (see `THIRD_PARTY.md`). |
+| `skills/` | 62 skills, copied unchanged from their sources (see `THIRD_PARTY.md`). |
 | `scripts/record-film.mjs` | Records a film page to VP9 WebM via Playwright and Chrome's screencast, with optional snapshots. |
 | `examples/portfolio-what-if.md` | A worked example: a launch film for a product concept on a portfolio site. |
 | `.claude-plugin/` | Plugin and marketplace manifests, so the repo installs as a Claude Code plugin. |
@@ -19,7 +19,7 @@ Grouped as the agent uses them. Every skill folder is `skills/<name>/SKILL.md`.
 <!--
 To add a skill:
 1. Copy its folder into skills/ unchanged.
-2. Add a row to the right group below (or to "More skills"): name, one line, source.
+2. Add a row to the right group below (or start a new group): name, one line, source.
 3. Add its source, commit and licence to THIRD_PARTY.md.
 4. Add it to the skills index in agents/video-editor.md.
 5. Update the skill count in this README, plugin.json and marketplace.json.
@@ -110,12 +110,39 @@ To add a skill:
 | `motion-pricing` | Quotes, day rates and cost drivers | freelance-motion-skills |
 | `brand-motion-guidelines` | A brand motion system: easing and timing tokens, rules | freelance-motion-skills |
 
-### More skills
-Skills added after the first release go here, or into a group above.
-
+### Video tools and QA
 | Skill | What it's for | Source |
 | --- | --- | --- |
-| | | |
+| `ffmpeg-cli` | ffmpeg reference: encode, seek, filters, GIFs, thumbnails, contact sheets, ffprobe | wookstar-claude-plugins |
+| `ffmpeg-video-analysis` | Automated video QA: black, freeze and blur detection, scene cuts, PSNR/SSIM/VMAF | claude-plugin-marketplace |
+| `ffmpeg-color-grading-chromakey` | LUTs, curves, BT.709 and chroma keying | claude-plugin-marketplace |
+| `video-design` | Video design rules and a contact-sheet critique loop | claude-code-video-toolkit |
+
+### Audio and voice
+| Skill | What it's for | Source |
+| --- | --- | --- |
+| `ffmpeg-audio-processing` | Loudness (EBU R128), LUFS targets, EQ, fades, mastering | claude-plugin-marketplace |
+| `text-to-speech` | Voiceover with ElevenLabs | elevenlabs/skills |
+| `sound-effects` | Sound effects with ElevenLabs | elevenlabs/skills |
+| `music` | Music with ElevenLabs | elevenlabs/skills |
+| `speech-to-text` | Transcription with word timestamps (ElevenLabs) | elevenlabs/skills |
+| `transcribe` | Local Whisper transcription to TXT, SRT or VTT | wookstar-claude-plugins |
+
+### Planning
+| Skill | What it's for | Source |
+| --- | --- | --- |
+| `storyboard-architect` | Brief to storyboard and shot list (Apache-2.0, NOTICE included) | shotkit |
+
+### Code animation engines
+| Skill | What it's for | Source |
+| --- | --- | --- |
+| `motion-canvas` | Motion Canvas guide: scenes, signals, rendering | udnisap/skills |
+| `manim-skill` | Manim Community Edition explainers | manim-skill |
+
+Before using some of these, read the rules in `agents/video-editor.md`. The ElevenLabs skills need an API key and cost money; `transcribe` downloads Whisper through `uvx`; and the ffmpeg QA filters need a full ffmpeg, because Playwright's bundled ffmpeg is a stripped build.
+
+### More skills
+Add new skills to a group above, or start a new group table here.
 
 ## Install
 Replace `dheerazsah/video-editor-skills` with the repository's real `owner/name` if it differs.
@@ -166,9 +193,10 @@ In Claude Code, ask for it by name: "Use the video-editor agent to cut a 30 s la
 Don't use `npx skills add`; it runs a third-party installer.
 
 ## Credits
-- Skills: [iart.ai](https://iart.ai) skill packs, MIT. Sources, commits and licence text in `THIRD_PARTY.md`.
+- Skills: [iart.ai](https://iart.ai) skill packs (MIT); henkisdabro/wookstar-claude-plugins, JosiahSiegel/claude-plugin-marketplace, digitalsamba/claude-code-video-toolkit, elevenlabs/skills, udnisap/skills and Yusuke710/manim-skill (MIT); whystrohm/shotkit (Apache-2.0, with NOTICE). Sources, commits and full licence texts in `THIRD_PARTY.md`.
+- Worth reading, not included: https://github.com/remotion-dev/skills (no permissive licence) and https://github.com/heygen-com/hyperframes.
 - Craft notes studied from https://github.com/mattypark/Motion-graphics-skill (not copied).
 - Film reference: Google's "Ask Maps" launch film.
 
 ## Licence
-MIT for the agent, recorder, examples, README and manifests; see `LICENSE`. The skills keep their own MIT licence; see `THIRD_PARTY.md`.
+MIT for the agent, recorder, examples, README and manifests; see `LICENSE`. The skills keep their own licences (MIT, and Apache-2.0 for `storyboard-architect`); see `THIRD_PARTY.md`.

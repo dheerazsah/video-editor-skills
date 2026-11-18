@@ -41,6 +41,10 @@ Load the one that fits before building:
 - **Formats:** `short-form-video`, `youtube-intro-outro`, `audiogram`, `countdown-video`, `photo-slideshow`, `presentation-video`, `testimonial-video`, `whiteboard-animation`, `logo-animation`.
 - **Tools and delivery:** `remotion-video`, `after-effects`, `video-delivery-specs`.
 - **Briefs and clients:** `creative-brief`, `client-revisions`, `motion-pricing`, `brand-motion-guidelines`.
+- **Video tools and QA:** `ffmpeg-cli`, `ffmpeg-video-analysis`, `ffmpeg-color-grading-chromakey`, `video-design`.
+- **Audio and voice:** `ffmpeg-audio-processing`, `text-to-speech`, `sound-effects`, `music`, `speech-to-text`, `transcribe`.
+- **Planning:** `storyboard-architect`.
+- **Code animation engines:** `motion-canvas`, `manim-skill`.
 
 ### Where the skills and references come from
 Go back to these when a skill here isn't enough. Versions and licences are in `THIRD_PARTY.md`.
@@ -60,10 +64,23 @@ Go back to these when a skill here isn't enough. Versions and licences are in `T
   - https://github.com/iart-ai/youtube-video-skills: audiogram, youtube-intro-outro
   - https://github.com/iart-ai/text-message-video-skills: text-message-animation
   - https://github.com/iart-ai/freelance-motion-skills: brand-motion-guidelines, client-revisions, creative-brief, motion-pricing, video-delivery-specs
+- **Video tools, audio, planning and engines (copied unchanged; licences in `THIRD_PARTY.md`):**
+  - https://github.com/henkisdabro/wookstar-claude-plugins: ffmpeg-cli, transcribe
+  - https://github.com/JosiahSiegel/claude-plugin-marketplace: ffmpeg-video-analysis, ffmpeg-audio-processing, ffmpeg-color-grading-chromakey
+  - https://github.com/digitalsamba/claude-code-video-toolkit: video-design
+  - https://github.com/elevenlabs/skills: text-to-speech, sound-effects, music, speech-to-text
+  - https://github.com/whystrohm/shotkit: storyboard-architect (Apache-2.0; its NOTICE travels with the skill)
+  - https://github.com/udnisap/skills: motion-canvas
+  - https://github.com/Yusuke710/manim-skill: manim-skill
+- **Worth reading, can't copy:** https://github.com/remotion-dev/skills (no permissive licence) and https://github.com/heygen-com/hyperframes (its references are good reading; rejected because it runs an unpinned remote CLI and sends telemetry).
 - **iart.ai app:** https://app.iart.ai/create (needs the user's own sign-in, so agents can't open it).
 - To update a pack, clone it to a temporary folder, read the diff and copy the changed skill folders over the old ones. Don't run `npx skills add`; it runs a third-party installer.
 
 ## Rules
+- ElevenLabs skills (`text-to-speech`, `sound-effects`, `music`, `speech-to-text`): use the Python/JS SDK path only. Never run the onboarding CLI (`npx @elevenlabs/cli ... onboard`) or the `curl | sh` installer. Using ElevenLabs needs the owner's approval (API key, new dependency, cost).
+- `transcribe` runs Whisper through `uvx`, which downloads a PyPI package: ask first.
+- `storyboard-architect`'s validators come from the shotkit toolkit, which isn't included, so skip that step.
+- Prefer `ffmpeg-video-analysis` (blackdetect, freezedetect) to check recordings for dead air and frozen frames, alongside snapshot sizes. Playwright's bundled ffmpeg is a stripped build (VP9 and MJPEG only, no filters guaranteed), so these checks need a full ffmpeg (for example Homebrew's), which is a new dependency: ask the owner first.
 - Re-record only after a change is in; **record once per round of feedback**, not once per tweak. Batch the fixes, then record.
 - Screenshots and frames as JPEG only, a few per round, never PNG.
 - Don't commit, push or deploy unless the owner asks. Hand back a short summary: what changed, the film length, which frames you checked and anything left open.

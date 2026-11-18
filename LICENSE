@@ -4,7 +4,7 @@ Copyright (c) 2026 Dhiraj Kumar Sah Kanu
 
 This licence covers the files written for this repository: agents/,
 scripts/, examples/, README.md and the .claude-plugin/ manifests. The skill
-folders in skills/ are third-party work under their own MIT licence; see
+folders in skills/ are third-party work under their own licences; see
 THIRD_PARTY.md.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
