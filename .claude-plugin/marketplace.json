@@ -1,0 +1,13 @@
+{
+  "name": "video-editor-skills",
+  "owner": {
+    "name": "Dhiraj Kumar Sah Kanu"
+  },
+  "plugins": [
+    {
+      "name": "video-editor",
+      "source": "./",
+      "description": "A video editor and motion designer agent for Claude Code, with 49 motion and video skills. Plans, builds, records and checks product and launch films made in code and recorded from the browser."
+    }
+  ]
+}

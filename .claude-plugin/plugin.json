@@ -1,0 +1,21 @@
+{
+  "name": "video-editor",
+  "version": "0.1.0",
+  "description": "A video editor and motion designer agent for Claude Code, with 49 motion and video skills. Plans, builds, records and checks product and launch films made in code and recorded from the browser.",
+  "author": {
+    "name": "Dhiraj Kumar Sah Kanu"
+  },
+  "homepage": "https://github.com/dheerazsah/video-editor-skills",
+  "repository": "https://github.com/dheerazsah/video-editor-skills",
+  "license": "MIT",
+  "keywords": [
+    "video-editor",
+    "motion-design",
+    "motion-graphics",
+    "product-film",
+    "launch-video",
+    "screen-recording",
+    "claude-agent",
+    "claude-skill"
+  ]
+}
